@@ -27,6 +27,9 @@ class Canvas(width: Int, height: Int) {
         }
     }
 
+    /**
+     * Get character which is initially drawn on canvas at position (column, row)
+     */
     private fun getInitialChar(
         column: Int,
         row: Int,

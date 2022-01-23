@@ -164,4 +164,119 @@ internal class CanvasTest {
 
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun `fill canvas that contains line EXPECT canvas is filled correctly`() {
+        val expected = """------
+                       #|oooo|
+                       #|oxxo|
+                       #|oooo|
+                       #|oooo|
+                       #------""".trimMargin("#")
+        val actual = Canvas(4, 4)
+            .run {
+                drawHorizontalLine(2, 3, 2)
+                fillArea(3, 4, 'o')
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `fill inside rectangle EXPECT canvas is filled correctly`() {
+        val expected = """
+---------
+#|       |
+#| xxxxx |
+#| xooox |
+#| xooox |
+#| xxxxx |
+#|       |
+#|       |
+---------""".trimMargin("#")
+        val actual = Canvas(7, 7)
+            .run {
+                drawRectangle(2, 2, 6, 5)
+                fillArea(4, 3, 'o')
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `fill outside rectangle EXPECT canvas is filled correctly`() {
+        val expected = """
+---------
+#|ooooooo|
+#|oxxxxxo|
+#|ox   xo|
+#|ox   xo|
+#|oxxxxxo|
+#|ooooooo|
+#|ooooooo|
+---------""".trimMargin("#")
+        val actual = Canvas(7, 7)
+            .run {
+                drawRectangle(2, 2, 6, 5)
+                fillArea(2, 6, 'o')
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `make random fill 1 EXPECT canvas is filled correctly`() {
+        val expected = """
+---------
+#|ooooooo|
+#|oxxxxxo|
+#|xx   xo|
+#| x   xo|
+#|xxxxxxo|
+#|    xoo|
+#|    xoo|
+---------""".trimMargin("#")
+        val actual = Canvas(7, 7)
+            .run {
+                drawRectangle(2, 2, 6, 5)
+                drawVerticalLine(1, 3, 3)
+                drawHorizontalLine(1, 5, 5)
+                drawVerticalLine(5, 6, 7)
+                fillArea(1, 1, 'o')
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+
+    @Test
+    fun `make random fill 2 EXPECT canvas is filled correctly`() {
+        val expected = """
+---------
+#|       |
+#| xxxxx |
+#|xx   x |
+#|ox   x |
+#|xxxxxx |
+#|    x  |
+#|    x  |
+---------""".trimMargin("#")
+        val actual = Canvas(7, 7)
+            .run {
+                drawRectangle(2, 2, 6, 5)
+                drawVerticalLine(1, 3, 3)
+                drawHorizontalLine(1, 5, 5)
+                drawVerticalLine(5, 6, 7)
+                fillArea(1, 4, 'o')
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+
 }
