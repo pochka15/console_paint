@@ -1,3 +1,5 @@
+import drawing.State
+
 fun main() {
-    MainMenu().enter()
+    MainMenu(State()).enter()
 }

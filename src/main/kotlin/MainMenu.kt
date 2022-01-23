@@ -1,15 +1,10 @@
 import commands.*
-import commands.CreateCanvasCommand
-import commands.DrawLineCommand
-import commands.CustomCommand
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStreamReader
+import drawing.State
 
 
 private const val QUIT_COMMAND_NAME = "Q"
 
-class MainMenu {
+class MainMenu(state: State) {
     private val nameToCommand: Map<String, Command>
 
     private val commandsDescription: String by lazy {
@@ -20,7 +15,8 @@ class MainMenu {
 
     private val commands = listOf(
         CreateCanvasCommand(
-            CommandMeta("C", "Create a new canvas of width w and height h.")
+            CommandMeta("C", "Create a new canvas of width w and height h."),
+            state
         ),
 
         DrawLineCommand(
@@ -53,14 +49,10 @@ class MainMenu {
         while (!shouldFinish) {
             print("${System.lineSeparator()}Enter command: ")
 
-//            Read command name
-            val reader = BufferedReader(InputStreamReader(System.`in`))
-            val name = try {
-                reader.readLine().split(" ").toTypedArray()[0]
-            } catch (e: IOException) {
-                e.printStackTrace()
-                ""
-            }
+//            Read command name and arg
+            val nameAndArg = readLine()!!.split(" ", limit = 2)
+            val name = nameAndArg[0]
+            val arg = nameAndArg.getOrNull(1)
 
 //            Execute command
             val command = this.nameToCommand[name]
@@ -68,7 +60,7 @@ class MainMenu {
                 if (command.meta.name == QUIT_COMMAND_NAME) shouldFinish = true
 
                 when (command) {
-                    is CommandWithArg -> command.execute("some argument")
+                    is CommandWithArg -> command.execute(arg!!)
                     is CommandWithoutArg -> command.execute()
                 }
 
