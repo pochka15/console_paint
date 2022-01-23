@@ -43,7 +43,7 @@ internal class CanvasTest {
                 toString()
             }
 
-        assertTrue(expected == actual)
+        assertEquals(expected, actual)
     }
 
     @Test
@@ -142,6 +142,23 @@ internal class CanvasTest {
         val actual = Canvas(4, 4)
             .run {
                 drawRectangle(1, 1, 4, 4)
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `fill empty canvas EXPECT canvas is filled`() {
+        val expected = """------
+                       #|oooo|
+                       #|oooo|
+                       #|oooo|
+                       #|oooo|
+                       #------""".trimMargin("#")
+        val actual = Canvas(4, 4)
+            .run {
+                fillArea(1, 1, 'o')
                 toString()
             }
 

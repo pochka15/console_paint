@@ -15,13 +15,13 @@ class MainMenu(state: State) {
 
     private val commands = listOf(
         CreateCanvasCommand(
-            CommandMeta("C", "Create a new canvas of width w and height h."),
+            CommandMeta("C", "Args: w, h. Create a new canvas of width w and height h."),
             state
         ),
 
         DrawLineCommand(
             CommandMeta(
-                "L", """Draw a new line from (x1,y1) to (x2,y2).
+                "L", """Args: x1, y1, x2, y2. Draw a new line from (x1,y1) to (x2,y2).
     Currently only horizontal or vertical lines are
     supported. Horizontal and vertical lines will be drawn
     using the 'x' character"""
@@ -31,10 +31,19 @@ class MainMenu(state: State) {
 
         DrawRectangleCommand(
             CommandMeta(
-                "R", """Draw a new rectangle, whose upper left corner
+                "R", """Args: x1, y1, x2, y2. Draw a new rectangle, whose upper left corner
     is (x1,y1) and lower right corner is (x2,y2).
     Horizontal and vertical lines will be drawn using the
     'x' character."""
+            ),
+            state
+        ),
+
+        FillAreaCommand(
+            CommandMeta(
+                "B", """Args: x, y, c. Should fill the entire area connected to (x,y) with
+    "colour" c. The behaviour of this is the same as that
+    of the "bucket fill" tool in paint programs."""
             ),
             state
         ),
