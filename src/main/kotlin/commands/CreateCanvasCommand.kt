@@ -12,7 +12,9 @@ class CreateCanvasCommand(
     private val state: State
 ) : CommandWithArg {
     override fun execute(argument: String) {
-        val (arg1, arg2) = argument.split("\\s+".toRegex(), limit = 2)
+        val arguments = argument.split("\\s+".toRegex(), limit = 2)
+        if (arguments.size < 2) return println("Expected to have 2 argumenth: width and height")
+        val (arg1, arg2) = arguments
         val width = arg1.toIntOrNull() ?: return println("Couldn't parse width: $arg1")
         val height = arg2.toIntOrNull() ?: return println("Couldn't parse height: $arg2")
         state.canvas = Canvas(width, height).also { println(it) }
