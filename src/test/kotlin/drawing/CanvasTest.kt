@@ -130,4 +130,21 @@ internal class CanvasTest {
 
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun `draw rectangle with middle spacing EXPECT correct image`() {
+        val expected = """------
+                       #|xxxx|
+                       #|x  x|
+                       #|x  x|
+                       #|xxxx|
+                       #------""".trimMargin("#")
+        val actual = Canvas(4, 4)
+            .run {
+                drawRectangle(1, 1, 4, 4)
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
 }

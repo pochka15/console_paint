@@ -60,16 +60,14 @@ class Canvas(width: Int, height: Int) {
 
 
     fun drawRectangle(x1: Int, y1: Int, x2: Int, y2: Int) {
-        val fromRow = min(y1, y2)
-        val toRow = max(y1, y2)
-        val fromColumn = min(x1, x2)
-        val toColumn = max(x1, x2)
+        val minY = min(y1, y2)
+        val maxY = max(y1, y2)
+        val minX = min(x1, x2)
+        val maxX = max(x1, x2)
 
-        for (i in fromRow..toRow) {
-            for (j in fromColumn..toColumn) {
-                rows[i][j] = 'x'
-            }
-        }
-
+        drawHorizontalLine(minX, maxX, minY)
+        drawHorizontalLine(minX, maxX, maxY)
+        drawVerticalLine(minX, minY, maxY)
+        drawVerticalLine(maxX, minY, maxY)
     }
 }
