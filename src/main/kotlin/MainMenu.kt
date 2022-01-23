@@ -4,6 +4,9 @@ import drawing.State
 
 private const val QUIT_COMMAND_NAME = "Q"
 
+/**
+ * Class representing the console menu. Menu contains commands which can be executed.
+ */
 class MainMenu(state: State) {
     private val nameToCommand: Map<String, Command>
 
