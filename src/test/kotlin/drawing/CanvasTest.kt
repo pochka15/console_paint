@@ -39,7 +39,7 @@ internal class CanvasTest {
                        #------""".trimMargin("#")
         val actual = Canvas(4, 4)
             .run {
-                drawLine(2, 2, 2, 2)
+                drawHorizontalLine(2, 2, 2)
                 toString()
             }
 
@@ -56,7 +56,7 @@ internal class CanvasTest {
                        #------""".trimMargin("#")
         val actual = Canvas(4, 4)
             .run {
-                drawLine(2, 2, 2, 4)
+                drawVerticalLine(2, 2, 4)
                 toString()
             }
 
@@ -73,7 +73,58 @@ internal class CanvasTest {
                        #------""".trimMargin("#")
         val actual = Canvas(4, 4)
             .run {
-                drawLine(2, 2, 4, 2)
+                drawHorizontalLine(2, 4, 2)
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `draw zero area rectangle EXPECT correct image`() {
+        val expected = """------
+                       #|x   |
+                       #|    |
+                       #|    |
+                       #|    |
+                       #------""".trimMargin("#")
+        val actual = Canvas(4, 4)
+            .run {
+                drawRectangle(1, 1, 1, 1)
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `draw upper left rectangle EXPECT correct image`() {
+        val expected = """------
+                       #|xx  |
+                       #|xx  |
+                       #|    |
+                       #|    |
+                       #------""".trimMargin("#")
+        val actual = Canvas(4, 4)
+            .run {
+                drawRectangle(1, 1, 2, 2)
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `draw rectangle with incorrect coords sequence EXPECT correct image`() {
+        val expected = """------
+                       #|    |
+                       #| xxx|
+                       #| xxx|
+                       #|    |
+                       #------""".trimMargin("#")
+        val actual = Canvas(4, 4)
+            .run {
+                drawRectangle(4, 3, 2, 2)
                 toString()
             }
 

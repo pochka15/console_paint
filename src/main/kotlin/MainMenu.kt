@@ -29,6 +29,17 @@ class MainMenu(state: State) {
             state
         ),
 
+        DrawRectangleCommand(
+            CommandMeta(
+                "R", """Draw a new rectangle, whose upper left corner
+    is (x1,y1) and lower right corner is (x2,y2).
+    Horizontal and vertical lines will be drawn using the
+    'x' character."""
+            ),
+            state
+        ),
+
+
         CustomCommand(CommandMeta(QUIT_COMMAND_NAME, "Quit the program")) {
             println("Good bye!")
         },

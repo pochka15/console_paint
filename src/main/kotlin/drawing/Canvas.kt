@@ -47,15 +47,29 @@ class Canvas(width: Int, height: Int) {
             }
     }
 
-    fun drawLine(x1: Int, y1: Int, x2: Int, y2: Int) {
-        assert(x1 > 0 && x2 > 0 && y1 > 0 && y2 > 0) { "Line coordinates must be > 0" }
+    fun drawHorizontalLine(x1: Int, x2: Int, y: Int) {
+        assert(x1 > 0 && x2 > 0 && y > 0) { "Line coordinates must be > 0" }
+        for (i in min(x1, x2)..max(x1, x2)) rows[y][i] = 'x'
+    }
 
-        // is vertical line
-        if (x1 == x2)
-            for (i in min(y1, y2)..max(y1, y2)) rows[i][x1] = 'x'
 
-        // is horizontal line
-        else if (y1 == y2)
-            for (i in min(x1, x2)..max(x1, x2)) rows[y1][i] = 'x'
+    fun drawVerticalLine(x: Int, y1: Int, y2: Int) {
+        assert(x > 0 && y1 > 0 && y2 > 0) { "Line coordinates must be > 0" }
+        for (i in min(y1, y2)..max(y1, y2)) rows[i][x] = 'x'
+    }
+
+
+    fun drawRectangle(x1: Int, y1: Int, x2: Int, y2: Int) {
+        val fromRow = min(y1, y2)
+        val toRow = max(y1, y2)
+        val fromColumn = min(x1, x2)
+        val toColumn = max(x1, x2)
+
+        for (i in fromRow..toRow) {
+            for (j in fromColumn..toColumn) {
+                rows[i][j] = 'x'
+            }
+        }
+
     }
 }
