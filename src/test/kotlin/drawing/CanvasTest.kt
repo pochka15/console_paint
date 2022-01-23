@@ -30,6 +30,18 @@ internal class CanvasTest {
     }
 
     @Test
+    fun `create 20 by 4 canvas EXPECT correct image`() {
+        val expected = """
+----------------------
+|                    |
+|                    |
+|                    |
+|                    |
+----------------------""".trimMargin("#")
+        assertEquals(expected, Canvas(20, 4).toString())
+    }
+
+    @Test
     fun `draw zero length line EXPECT correct image`() {
         val expected = """------
                        #|    |
@@ -272,6 +284,84 @@ internal class CanvasTest {
                 drawHorizontalLine(1, 5, 5)
                 drawVerticalLine(5, 6, 7)
                 fillArea(1, 4, 'o')
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `test random canvas 1 EXPECT correct image`() {
+        val expected = """
+----------------------
+|                    |
+|xxxxxx              |
+|                    |
+|                    |
+----------------------""".trimMargin("#")
+        val actual = Canvas(20, 4)
+            .run {
+                drawHorizontalLine(1, 6, 2)
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `test random canvas 2 EXPECT correct image`() {
+        val expected = """
+----------------------
+|                    |
+|xxxxxx              |
+|     x              |
+|     x              |
+----------------------""".trimMargin("#")
+        val actual = Canvas(20, 4)
+            .run {
+                drawHorizontalLine(1, 6, 2)
+                drawVerticalLine(6, 3, 4)
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `test random canvas 3 EXPECT correct image`() {
+        val expected = """
+----------------------
+#|               xxxxx|
+#|xxxxxx         x   x|
+#|     x         xxxxx|
+#|     x              |
+----------------------""".trimMargin("#")
+        val actual = Canvas(20, 4)
+            .run {
+                drawHorizontalLine(1, 6, 2)
+                drawVerticalLine(6, 3, 4)
+                drawRectangle(16, 1, 20, 3)
+                toString()
+            }
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `test random canvas 4 EXPECT correct image`() {
+        val expected = """
+----------------------
+#|oooooooooooooooxxxxx|
+#|xxxxxxooooooooox   x|
+#|     xoooooooooxxxxx|
+#|     xoooooooooooooo|
+----------------------""".trimMargin("#")
+        val actual = Canvas(20, 4)
+            .run {
+                drawHorizontalLine(1, 6, 2)
+                drawVerticalLine(6, 3, 4)
+                drawRectangle(16, 1, 20, 3)
+                fillArea(10, 3, 'o')
                 toString()
             }
 
