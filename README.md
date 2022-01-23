@@ -4,6 +4,9 @@
 
 This is a simple console app that draws ascii symbols on canvas.
 
+<img width="448" alt="Screenshot 2022-01-24 at 00 20 33" src="https://user-images.githubusercontent.com/24525928/150698433-ebf6f09b-aef5-44c0-b743-aed94105051f.png">
+
+
 ## How Tos
 
   ```sh
