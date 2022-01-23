@@ -25,7 +25,8 @@ class MainMenu(state: State) {
     Currently only horizontal or vertical lines are
     supported. Horizontal and vertical lines will be drawn
     using the 'x' character"""
-            )
+            ),
+            state
         ),
 
         CustomCommand(CommandMeta(QUIT_COMMAND_NAME, "Quit the program")) {
